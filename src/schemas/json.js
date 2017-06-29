@@ -159,8 +159,13 @@ function processObject(object, output, nested) {
       continue
     }
 
-    output.properties[key] = {}
-    output.properties[key].type = type
+    //Don't overwrite existing keys
+    if (type === 'null' && output.properties[key]) {
+      //console.log(output.properties[key]);
+    } else {
+        output.properties[key] = {}
+        output.properties[key].type = type
+    }
 
     if (format) {
       output.properties[key].format = format
